@@ -1,0 +1,36 @@
+form {
+    display: flex;
+    justify-content: center;
+}
+
+form input {
+    padding: .8rem 1rem;
+    width: 30rem;
+    border: none;
+    font-size: 18px;
+    border-radius: 1rem 0 0 1rem;
+}
+
+form button {
+    padding: 0 1.2rem;
+    border: none;
+    border-radius: 0 1rem  1rem 0;
+    background-color: #000;
+}
+
+form input:focus {
+    outline: none;
+    border-color: rgb(245, 133, 133);
+  }
+
+  form button:hover {
+    background-color: rgb(114, 110, 110);
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 500px) {
+    form input {
+        width: 75%;
+        padding: 1rem;
+    }
+  }

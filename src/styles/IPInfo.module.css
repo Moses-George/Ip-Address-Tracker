@@ -1,0 +1,54 @@
+.ip {
+    display: grid;
+    position: absolute;
+    top: 31%;
+     left: 5%; 
+    right: 5%; 
+}
+
+.ip-info {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    width: fit-content;
+    padding: 1.5rem 0;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.info {
+    padding: 0 2rem;
+}
+
+.ip-info > div:nth-child(-n+3) {
+    border-right: 1px solid #ccc;
+}
+
+.info h2 {
+    color: hsl(0, 0%, 17%);
+    margin: 0;
+}
+
+.info p {
+    color: hsl(0, 0%, 59%);
+    font-size: .8rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+@media screen and (max-width: 500px) {
+    .ip {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+    .ip-info {
+        grid-template-columns: 1fr;
+        width: 90%;
+        text-align: center;
+        justify-self: center;
+    }
+    ip-info > div:nth-child(-n+3) {
+        border-right: none;
+    }
+}
