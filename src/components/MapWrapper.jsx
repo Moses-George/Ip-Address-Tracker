@@ -20,7 +20,13 @@ const MapWrapper = () => {
     const LocationMarker = ({ coords }) => {
         const map = useMap();
         map.flyTo(coords, map.getZoom());
-        return null;
+        return (
+            <Marker position={position} icon={icon} >
+            <Popup>
+                A pretty css3 popup. <br /> easily customizable
+            </Popup>
+        </Marker>
+        );
     };
 
     return (
@@ -28,11 +34,6 @@ const MapWrapper = () => {
             <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright" >OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={position} icon={icon} >
-                <Popup>
-                    A pretty css3 popup. <br /> easily customizable
-                </Popup>
-            </Marker>
             <LocationMarker coords={position} />
         </MapContainer>
     )

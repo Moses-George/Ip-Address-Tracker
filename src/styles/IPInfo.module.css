@@ -1,7 +1,8 @@
 .ip {
     display: grid;
+    justify-items: center;
     position: absolute;
-    top: 31%;
+    top: 14rem;
      left: 5%; 
     right: 5%; 
 }

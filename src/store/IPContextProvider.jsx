@@ -17,8 +17,9 @@ const IPContextProvider = ({ children }) => {
     });
 
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const baseUrl = `https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_API_KEY}` ;
+    const baseUrl = `https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_API_KEY}`;
 
     const ipValidity = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
     let url;
@@ -35,6 +36,7 @@ const IPContextProvider = ({ children }) => {
 
     const fetchData = async (userInput) => {
         setIsLoading(true);
+        setError(null);
         if (ipValidity.test(userInput)) {
             url = baseUrl + '&ipAddress=' + userInput;
         } else {
@@ -42,10 +44,14 @@ const IPContextProvider = ({ children }) => {
         }
         try {
             const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error("Failed to fetch location");
+            }
             const data = await response.json();
             setData(data);
         } catch (error) {
-            console.log(error);
+            setError(error.message);
+            console.log(error.message);
         }
         setIsLoading(false);
     }
@@ -53,7 +59,8 @@ const IPContextProvider = ({ children }) => {
     const values = {
         data: data,
         getData: fetchData,
-        loading: isLoading
+        loading: isLoading,
+        error: error
     }
 
     return (

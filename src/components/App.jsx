@@ -8,13 +8,17 @@ import Spinner from './UI/Spinner';
 
 const App = () => {
 
-    const {loading} = useContext(IPContext);
+    const {loading, error} = useContext(IPContext);
 
     return (
         <Fragment>
             <Header  />
-            {!loading && <IPInfo />}
-            {loading && <Spinner /> }
+            {!loading && !error &&<IPInfo />}
+            {loading && error && <Spinner /> }
+            {error && <div className="error">
+            <p>Error: {error}</p>
+            <p>Fix: Enter a valid domain or IP address, also check your network connection </p>
+            </div>}
             <MapWrapper />
         </Fragment>
     )
