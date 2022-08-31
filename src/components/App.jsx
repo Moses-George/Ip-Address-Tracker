@@ -14,7 +14,7 @@ const App = () => {
         <Fragment>
             <Header  />
             {!loading && !error &&<IPInfo />}
-            {loading && error && <Spinner /> }
+            {loading && !error && <Spinner /> }
             {error && <div className="error">
             <p>Error: {error}</p>
             <p>Fix: Enter a valid domain or IP address, also check your network connection </p>
